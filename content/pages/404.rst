@@ -1,0 +1,22 @@
+你要访问的页面不存在了
+######################
+
+:date: 2013-11-03 20:38
+:tags: 404
+:keywords: 404 
+:slug: 404
+:author: crazygit
+:summary: 404
+:description: 404
+:status: hidden
+
+
+.. raw:: html
+
+    <hr width=100% size=4 color=#CCFFCC style="FILTER: alpha(opacity=100,finishopacity=0,style=3)">
+    <script type="text/javascript">
+        var GOOG_FIXURL_LANG = 'zh_CN';
+        var GOOG_FIXURL_SITE = 'http://lianglin999.cn';
+    </script>
+    <script type="text/javascript" src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
+

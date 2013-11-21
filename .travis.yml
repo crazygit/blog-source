@@ -1,0 +1,26 @@
+branches:
+  only:
+    - master
+
+language: python
+
+python:
+    - '2.7'
+
+before_install:
+    - git submodule update --init --recursive
+
+install: pip install -r requirements.txt --use-mirrors
+
+script: make publish
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+
+after_success: "./deploy.sh"
+
+env:
+  global:
+    secure: bFLEmtouNIF9hME7GwETE+8whk1c2p1FF4DE+4jykNAJhhcSEZcNlowlf4+Uoz9rMZdqK8W6iIOsSTKh1bXBh1BZxerQB4BDly8966vDUr8xPWF2cBhzlnYodIhJv/EoAmHiWGMi/kxL7CKUG5hvQw4L/nXBOYzzCkZkwpsf2xc=

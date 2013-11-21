@@ -1,0 +1,3 @@
+[submodule "blog-theme"]
+	path = blog-theme
+	url = git://github.com/crazygit/blog-theme.git
