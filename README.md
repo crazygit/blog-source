@@ -10,7 +10,3 @@
 * <http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html>
 * <http://about.travis-ci.org/docs/user/getting-started/>
 * <http://about.travis-ci.org/docs/user/build-configuration/>
-
-# 需要修改的地方
-
-加密GH_TOKEN
