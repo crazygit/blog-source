@@ -14,3 +14,5 @@
 3. http://about.travis-ci.org/docs/user/build-configuration/
 
 4. http://wercker.com/
+
+5. http://www.cloudbees.com 一个提供Jenkins的类似服务
