@@ -10,7 +10,7 @@ python:
 before_install:
     - git submodule update --init --recursive
 
-install: pip install -r requirements.txt --use-mirrors
+install: pip install -r deploy_requirements.txt --use-mirrors
 
 script: make publish
 
