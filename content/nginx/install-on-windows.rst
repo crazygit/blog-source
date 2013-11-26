@@ -9,14 +9,15 @@ Windows下安装Nginx
 :summary: Install nginx on windows
 :description:
 
-本文参考自`windows下安装nginx <http://nginx.org/cn/docs/windows.html>`_ 
+*本文参考自 `windows下安装nginx <http://nginx.org/cn/docs/windows.html>`_  .*
 
 
 nginx的Windows版本使用原生Win32 API（非Cygwin模拟层）。当前nginx/Windows只使用select作为通知方法，所以不要期待它有很高的性能和扩展性。鉴于这点和一些已知问题，nginx/Windows目前还处于beta阶段。nginx/Windows和Unix版本相比，功能几乎已经齐全，除了XSLT过滤器、图像过滤器、GeoIP模块和嵌入Perl语言支持以外。
 
 安装nginx/Windows，需要下载最新的1.5.7开发版本，因为开发分支上包含了所有已知的问题修复，尤其是针对Windows版本的问题修复。解压缩下载得到的zip文件，进入nginx-1.5.7目录，运行nginx。下面给出一个在C盘根目录下安装的例子：
 
-.. code-block:: 
+::
+
 	cd c:\
 	unzip nginx-1.5.7.zip
 	cd nginx-1.5.7
@@ -24,7 +25,8 @@ nginx的Windows版本使用原生Win32 API（非Cygwin模拟层）。当前nginx
 
 可以在命令行运行tasklist命令来查看nginx进程：
 
-.. code-block:: 
+::
+
 	C:\nginx-1.5.7>tasklist /fi "imagename eq nginx.exe"
 
 	Image Name           PID Session Name     Session#    Mem Usage

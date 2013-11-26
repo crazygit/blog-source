@@ -41,6 +41,6 @@ Windows环境下搭建python开发环境
 
     a. 使用bandersnatch， 具体方法可以参考 `PyPI Mirrors <https://pypi.python.org/mirrors>`_  .
     b. 使用pep381client, 具体方法可以参考 `pep381client <http://www.python.org/dev/peps/pep-0381/>`_ .
-    c. 更多可以参考<http://www.worldhello.net/2011/03/14/2357.html>.
+    c. 更多可以参考http://www.worldhello.net/2011/03/14/2357.html.
 
 7. 好了，现在可以开始python之旅了。
