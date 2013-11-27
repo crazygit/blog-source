@@ -45,8 +45,15 @@ PYGMENT_STYLE = "emacs"
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
 # CNAME settings
-STATIC_PATHS = ['extra/CNAME']
-EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'}, }
+STATIC_PATHS = [
+    'extra/CNAME',
+    'extra/README.md',
+    ]
+
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'},
+    'extra/README.md': {'path': 'README.md'},
+    }
 
 # ACCOUNT settings
 GITHUB_URL = "https://github.com/crazygit"
