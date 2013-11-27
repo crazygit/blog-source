@@ -54,7 +54,7 @@ help:
 
 html:
 	rm -rf $(OUTPUTDIR)
-	$(PELICAN) -D $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
+	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 	sudo rm -rf /var/www/nginx-default/blog
 	sudo cp -r $(OUTPUTDIR) /var/www/nginx-default/blog
 

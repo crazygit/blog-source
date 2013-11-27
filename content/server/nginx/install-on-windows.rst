@@ -9,7 +9,8 @@ Windows下安装Nginx
 :summary: Install nginx on windows
 :description:
 
-*本文参考自 `windows下安装nginx <http://nginx.org/cn/docs/windows.html>`_  .*
+
+本文参考自 `windows下安装nginx <http://nginx.org/cn/docs/windows.html>`_  .
 
 
 nginx的Windows版本使用原生Win32 API（非Cygwin模拟层）。当前nginx/Windows只使用select作为通知方法，所以不要期待它有很高的性能和扩展性。鉴于这点和一些已知问题，nginx/Windows目前还处于beta阶段。nginx/Windows和Unix版本相比，功能几乎已经齐全，除了XSLT过滤器、图像过滤器、GeoIP模块和嵌入Perl语言支持以外。

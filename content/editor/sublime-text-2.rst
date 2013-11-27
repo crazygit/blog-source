@@ -1,13 +1,14 @@
 Sublime Text 2使用入门
 ######################
 
-:date: 2013-11-26 09:30
-:tags: windows, nginx
+:date: 2013-11-27 09:52
+:tags: sublime
 :keywords: windows, nginx
-:slug: install-nginx-on-windows
+:slug: sublime-text-2
 :author: crazygit
-:summary: Install nginx on windows
+:summary: Sublime Text2入门教程
 :description:
+:status: draft
 
 
 关于Sublime Text的赞美之词，网上太多了，不过别人再怎么说也是别人的感受，要自己亲身体会才是硬道理。下面，就让我们进入Sublime的世界吧。
@@ -27,15 +28,16 @@ Sublime Text 2使用入门
 
 1. 	快速定位
 2. 	命令面板
-3.  .....
+3.  to do
 4.  一些快捷键
 	
 	a. Ctrl+D 选中一个变量之后，用Ctrl+D快速跳到该变量下一次出现的地方。
 	b. Ctrl+Shift+L 将选中的内容拆分为多行，之后对每一行的操作都是同步的。
-	c. Ctrl+Shift+P 打开命令面板，如使用Ctrl+Shift+P打开命令面板之后，输入“sspy” (short for Set Syntax: Python), 使用python语法高显亮当前文章。
-	d. 
-	e. 
-	f.  
+	c. Ctrl+Shift+P 打开命令面板，如使用Ctrl+Shift+P打开命令面板之后，输入“sspy” (short for Set Syntax: Python),使用python语法高显亮当前文章。
+
+	d.  to do
+	e.  to do
+	f.  to do
 
 
 

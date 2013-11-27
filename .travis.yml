@@ -12,7 +12,7 @@ before_install:
 
 install: pip install -r deploy_requirements.txt --use-mirrors
 
-script: make publish
+script: make publish DEBUG=1
 
 notifications:
   email:
