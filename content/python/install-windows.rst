@@ -12,7 +12,7 @@ Windows环境下搭建python开发环境
 
 1. 从 `Python官网下载 <http://www.python.org/download/>`_  下载自己所需版本的windows安装包并进行安装。
 
-2. 将安装包的路径添加到系统环境变量,  :code:`C:\Python27` ， 同时为了后面使 :code:`easy_install` ，也 :code:`C:\Python27\Scripts` 添加到环境变量里（现在这个目录还不存在). 
+2. 将安装包的路径添加到系统环境变量,  :code:`C:\Python27` ， 同时为了后面使 :code:`easy_install` ，也 :code:`C:\Python27\Scripts` 添加到环境变量里（现在这个目录还不存在).
 
 3. 安装python包管理工具 *setuptools* , 安装方法如下:
 
@@ -41,6 +41,27 @@ Windows环境下搭建python开发环境
 
     a. 使用bandersnatch， 具体方法可以参考 `PyPI Mirrors <https://pypi.python.org/mirrors>`_  .
     b. 使用pep381client, 具体方法可以参考 `pep381client <http://www.python.org/dev/peps/pep-0381/>`_ .
-    c. 更多可以参考http://www.worldhello.net/2011/03/14/2357.html.
+
+        在使用pep381cient搭建本地镜像时发现它本身没有下载包，只是同步了包名，
+        Google了一下，在 `这里 <http://stackoverflow.com/questions/17667835/pep381clientpep381run-wont-download-packages-from-the-official-pypi-server>`_ 发现了答案，原因是pep381cient用的是http下载，而pypi只支持hppts.
+        因此需要修改一下pep381cient程序代码。
+        修改文件: :code:`(YOUR INSALLED DIRECTORY)/pep381client/__init__.py`
+
+        如 :code:`/usr/local/lib/python2.6/dist-packages/pep381client/__init__.py`
+
+        .. code-block:: Diff
+
+            9:  -BASE = 'http://'+pypi
+                +BASE = 'https://'+pypi
+
+            28: -        _conn = httplib.HTTPConnection(pypi)
+                +        _conn = httplib.HTTPSConnection(pypi)
+
+            37: -        _conn = httplib.HTTPConnection(pypi)
+                +        _conn = httplib.HTTPSConnection(pypi)
+
+
+
+    c. 更多可以参考 http://www.worldhello.net/2011/03/14/2357.html .
 
 7. 好了，现在可以开始python之旅了。

@@ -41,7 +41,7 @@ THEME = 'blog-theme'
 # code highlight style
 # [default emacs friendly colorful autumn murphy manni
 # monokai perldoc pastie borland trac native fruity bw vs tango]
-PYGMENT_STYLE = "emacs"
+PYGMENT_STYLE = "colorful"
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
 # CNAME settings
