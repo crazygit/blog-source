@@ -48,11 +48,13 @@ PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 STATIC_PATHS = [
     'extra/CNAME',
     'extra/README.md',
+    'extra/robots.txt',
     ]
 
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'},
     'extra/README.md': {'path': 'README.md'},
+    'extra/robots.txt': {'path': 'robots.txt'},
     }
 
 # ACCOUNT settings
@@ -65,3 +67,52 @@ BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+# feed
+FEED_DOMAIN = SITEURL
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+FEED_ALL_RSS = 'feeds/all.rss.xml'
+
+# Links
+LINKS = (
+    ("Travis-ci", "https://travis-ci.org/"),
+    ("Wercker", "http://wercker.com/"),
+    ("Cloudbees", "http://www.cloudbees.com"),
+    ("Pelican", "http://docs.getpelican.com/"),
+    ("Jinja", "http://jinja.pocoo.org/"),
+    ("Bootstrap", "http://www.bootcss.com/"),
+)
+
+# plugins
+PLUGIN_PATH = 'plugins'
+PLUGINS = ['assets', 'cjk-auto-spacing',
+           'extract_toc', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+
+
+# plugin assets configure
+ASSET_SOURCE_PATHS = (
+    'static/css',
+    'static/pygments',
+    )
+ASSET_BUNDLES = (
+    ('mycss', ['custom.css', PYGMENT_STYLE + '.css'], {'filters': 'cssmin'}),
+    )
+
+
+# plugin extract_toc configure
+MD_EXTENSIONS = (['toc'])
+
+# plugin sitemap configure
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}

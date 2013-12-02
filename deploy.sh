@@ -11,10 +11,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         git config --global user.email "lianglin999@gmail.com"
         git config --global user.name "crazygit"
     fi
-    #using token clone gh-pages branch
-    git clone --quiet --branch=$BRANCH https://${GH_TOKEN}@github.com/$TARGET_REPO built_website > /dev/null
-    #go into directory and copy data we're interested in to that directory
-    cd built_website
+    # using token to clone repo
+    git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-source > /dev/null
+    # go into directory and copy data we're interested in to that directory
+    cd blog-source
     rsync -rv --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
     #add, commit and push files
     git add -f .

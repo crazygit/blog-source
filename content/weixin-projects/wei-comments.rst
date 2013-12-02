@@ -3,7 +3,6 @@
 
 :date: 2010-10-03 10:20
 :tags: thats, awesome
-:keywords: 
 :slug: wei-comments
 :author: crazygit
 :summary: 

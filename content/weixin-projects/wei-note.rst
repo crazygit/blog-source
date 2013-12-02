@@ -3,7 +3,6 @@
 
 :date: 2013-11-27 10:04
 :tags: thats, awesome
-:keywords: 
 :slug: wei-note
 :author: crazygit
 :summary: 

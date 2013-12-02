@@ -3,7 +3,6 @@
 
 :date: 2013-11-21 11:08
 :tags: pelican, travis, deploy
-:keywords: pelican, travis, deploy
 :slug: auto-deploy-blog
 :author: crazygit
 :summary: auto deploy blog by travis-ci

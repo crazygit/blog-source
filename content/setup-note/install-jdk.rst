@@ -3,7 +3,6 @@ Ubuntu上手动安装JDK
 
 :date: 2013-11-03 19:09
 :tags: ubuntu, jdk
-:keywords: ubuntu, jdk
 :slug: install-jdk
 :author: crazygit
 :summary: install jdk

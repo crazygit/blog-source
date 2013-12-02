@@ -3,7 +3,6 @@ Windows环境下搭建python开发环境
 
 :date: 2013-11-25 23:14:34
 :tags: windows, python, pypi mirrors,
-:keywords: windows, python, pypi, mirrors,
 :slug: install-python-on-windows
 :author: crazygit
 :summary: install python on windows

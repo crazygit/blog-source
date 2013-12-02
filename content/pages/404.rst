@@ -3,7 +3,6 @@
 
 :date: 2013-11-03 20:38
 :tags: 404
-:keywords: 404 
 :slug: 404
 :author: crazygit
 :summary: 404

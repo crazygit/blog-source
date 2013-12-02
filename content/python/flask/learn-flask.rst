@@ -3,7 +3,6 @@ My super title
 
 :date: 2013-11-27 10:01
 :tags: thats, awesome
-:keywords: 
 :slug: my-super-post
 :author: crazygit
 :summary: 
