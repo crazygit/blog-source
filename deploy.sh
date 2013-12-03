@@ -18,7 +18,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     rsync -av --delete --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
     echo "*.webassets-cache" > .gitignore
     #add, commit and push files
-    git add -f .
+    git add -Af .
     git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to Github Pages"
     git push -fq origin $BRANCH > /dev/null
     echo -e "Deploy completed\n"
