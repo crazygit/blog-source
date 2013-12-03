@@ -68,11 +68,6 @@ BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-# feed
-FEED_DOMAIN = SITEURL
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-FEED_ALL_RSS = 'feeds/all.rss.xml'
-
 # Links
 LINKS = (
     ("Travis-ci", "https://travis-ci.org/"),
@@ -80,7 +75,7 @@ LINKS = (
     ("Cloudbees", "http://www.cloudbees.com"),
     ("Pelican", "http://docs.getpelican.com/"),
     ("Jinja", "http://jinja.pocoo.org/"),
-    ("Bootstrap", "http://www.bootcss.com/"),
+    ("Bootstrap中文网", "http://www.bootcss.com/"),
 )
 
 # plugins

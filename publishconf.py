@@ -16,6 +16,13 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
+# feed
+FEED_DOMAIN = SITEURL
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+FEED_ALL_RSS = 'feeds/all.rss.xml'
+
+
+
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""
