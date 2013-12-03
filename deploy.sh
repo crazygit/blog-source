@@ -15,7 +15,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-html > /dev/null
     # go into directory and copy data we're interested in to that directory
     cd blog-html
-    rsync -rv --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
+    rsync -av --delete --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
     echo "*.webassets-cache" > .gitignore
     #add, commit and push files
     git add -f .
