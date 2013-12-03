@@ -89,8 +89,10 @@ ASSET_SOURCE_PATHS = (
     'static/css',
     'static/pygments',
     )
+
 ASSET_BUNDLES = (
-    ('mycss', ['custom.css', PYGMENT_STYLE + '.css'], {'filters': 'cssmin'}),
+    ('mycss', ['custom.css', PYGMENT_STYLE + '.css'],
+     {'filters': 'cssmin', 'output': 'css/mycss.min.css'}),
     )
 
 
