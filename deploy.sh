@@ -12,10 +12,11 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         git config --global user.name "crazygit"
     fi
     # using token to clone repo
-    git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-source > /dev/null
+    git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-html > /dev/null
     # go into directory and copy data we're interested in to that directory
-    cd blog-source
+    cd blog-html
     rsync -rv --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
+    echo "*.webassets-cache" > .gitignore
     #add, commit and push files
     git add -f .
     git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to Github Pages"
