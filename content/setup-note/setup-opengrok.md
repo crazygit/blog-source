@@ -16,45 +16,46 @@ comments: true
 
 ## 准备工作
 
-以opengrok用户身份登录安装jdk和Exuberant Ctags
-```bash
-$ sudo apt-get install sun-java6-jdk ctags
-```
+以opengrok用户身份登录安装jdk和Exuberant Ctags.
+
+    $ sudo apt-get install sun-java6-jdk ctags
+
 获取opengrok安装包（opengrok-0.11.1.tar.gz）和tomcat安装包(apachetomcat-7.0.6.tar.gz)解压安装包到任意目录下面
-```bash
-$ cd /var/local/
-$ tar -zxvf /path/to/opengrok-0.11.1.tar.gz
-$ tar -zxvf /path/to/apachetomcat-7.0.6.tar.gz
-```
+
+    $ cd /var/local/
+    $ tar -zxvf /path/to/opengrok-0.11.1.tar.gz
+    $ tar -zxvf /path/to/apachetomcat-7.0.6.tar.gz
 
 下载需要使用的代码到一个目录下面
-```
-$ mkdir -p ~/opengrok/projects/project1
-$ mkdir -p ~/opnegrok/projects/project2
-$ cd ~/opengrok/projects/project1
-$ download code of project1 (such as: git clone ... or repo init ... && repo sync)
-$ cd ~/opengrok/projects/project2
-$ download code of project2 (such as: git clone ... or repo init ... && repo sync)
-```
+
+    $ mkdir -p ~/opengrok/projects/project1
+    $ mkdir -p ~/opnegrok/projects/project2
+    $ cd ~/opengrok/projects/project1
+    $ download code of project1 (such as: git clone ... or repo init ... && repo sync)
+    $ cd ~/opengrok/projects/project2
+    $ download code of project2 (such as: git clone ... or repo init ... && repo sync)
+
 目录结构如下:
+
 <pre>
 opengrok/projects----project1
             |----project2
             |----project3
             |----.......
 </pre>
+
 启动tomcat，确认tomcat没有问题
-```bash
-$ /var/local/apache-tomcat-7.0.6/bin/startup.sh
-```
+
+    $ /var/local/apache-tomcat-7.0.6/bin/startup.sh
+
 访问<http://127.0.0.1:8080>检查tomcat 是否正常工作
 
 ##  部署OpenGrok
 
 执行命令
-```bash
-$ sudo OPENGROK_TOMCAT_BASE=/var/local/apache-tomcat-7.0.6 /var/local/opengrok-0.11.1/bin/OpenGrok deploy
-```
+
+    $ sudo OPENGROK_TOMCAT_BASE=/var/local/apache-tomcat-7.0.6 /var/local/opengrok-0.11.1/bin/OpenGrok deploy
+
 这一步实际操作是`/var/local/opengrok-0.11.1/lib/source.war`部署到`/var/local/apache-tomcat-7.0.6/webapps/`
 访问
 <http://127.0.0.1:8080/source>
@@ -66,9 +67,9 @@ source.war已经没有什么用了，可以删除。
 
  创建索引时，会创建三个目录，一个data目录来存放索引信息，一个etc目录创建配置信息和一个log目录。
  如想让~/opengrok/来存放索引,则指定`OPENGROK_INSTANCE_BASE=~/opengrok`, 则指定`OPENGROK_INSTANCE_BASE=~/opengrok`
-```bash
-$ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
-```
+
+    $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
+
  这一步命令的执行时间视~/opengrok/projects/的代码数量决定。 最后会在~/opengrok 目录下面看到data,etc,log 三个目录
 
 访问<http://127.0.0.1:8080/source>,enjoy it!
@@ -78,9 +79,9 @@ $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/op
 
 首先更新项目代码或者下载新的项目到~/opengrok/projects目录下面。
 然后重新执行
-```bash
-$ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
-```
+
+    $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
+
 命令即可。
 
 
@@ -91,145 +92,144 @@ $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/op
 
 ###  直接调用命令行接口
 上面创建索引的命令其实
-```bash
-$ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
-```
+
+    $ OPENGROK_VERBOSE=true OPENGROK_INSTANCE_BASE=~/opengrok/ ./OpenGrok index ~/opengrok/projects/
+
 其实调用的是opengrok lib目录下的jar包：
-```bash
-java -Xmx2048m -Dorg.opensolaris.opengrok.history.cvs=/usr/bin/cvs
--Dorg.opensolaris.opengrok.history.git=/usr/bin/git
--Djava.util.logging.config.file=/data/opengrok/opengrok_data/logging.properties
--jar /data/opengrok/opengrok-0.11.1/bin/../lib/opengrok.jar
--P -S -r on -v -c /usr/bin/ctags-exuberant -a on
--W /data/opengrok/opengrok_data/etc/configuration.xml
--U localhost:2424 -s /data/opengrok/projects/
--d /data/opengrok/opengrok_data/data -H..
-```
+
+    java -Xmx2048m -Dorg.opensolaris.opengrok.history.cvs=/usr/bin/cvs
+    -Dorg.opensolaris.opengrok.history.git=/usr/bin/git
+    -Djava.util.logging.config.file=/data/opengrok/opengrok_data/logging.properties
+    -jar /data/opengrok/opengrok-0.11.1/bin/../lib/opengrok.jar
+    -P -S -r on -v -c /usr/bin/ctags-exuberant -a on
+    -W /data/opengrok/opengrok_data/etc/configuration.xml
+    -U localhost:2424 -s /data/opengrok/projects/
+    -d /data/opengrok/opengrok_data/data -H..
+
 上面各个参数的意思如下:
-```
-$ java -jar opengrok.jar
 
-Usage: opengrok.jar [options]
--?
-    Help
+    $ java -jar opengrok.jar
 
--A ext:analyzer
-    Files with the named extension should be analyzed with the specified class
+    Usage: opengrok.jar [options]
+    -?
+        Help
 
--a on/off
-    Allow or disallow leading wildcards in a search
+    -A ext:analyzer
+        Files with the named extension should be analyzed with the specified class
 
--B url
-    Base URL of the user Information provider. Default: "http://www.opensolaris.org/viewProfile.jspa?username="
+    -a on/off
+        Allow or disallow leading wildcards in a search
 
--C
-    Print per project percentage progress information(I/O extensive, since one read through dir structure is made before indexing, needs -v, otherwise it just goes to the log)
+    -B url
+        Base URL of the user Information provider. Default: "http://www.opensolaris.org/viewProfile.jspa?username="
 
--c /path/to/ctags
-    Path to Exuberant Ctags from http://ctags.sf.net by default takes the Exuberant Ctags in PATH.
+    -C
+        Print per project percentage progress information(I/O extensive, since one read through dir structure is made before indexing, needs -v, otherwise it just goes to the log)
 
--D
-    Store history cache in a database (needs the JDBC driver in the classpath, typically derbyclient.jar or derby.jar)
+    -c /path/to/ctags
+        Path to Exuberant Ctags from http://ctags.sf.net by default takes the Exuberant Ctags in PATH.
 
--d /path/to/data/root
-    The directory where OpenGrok stores the generated data
+    -D
+        Store history cache in a database (needs the JDBC driver in the classpath, typically derbyclient.jar or derby.jar)
 
--e
-    Economical - consumes less disk space. It does not generate hyper text cross reference files offline, but will do so on demand - which could be sightly slow.
+    -d /path/to/data/root
+        The directory where OpenGrok stores the generated data
 
--H
-    Generate history cache for all repositories
+    -e
+        Economical - consumes less disk space. It does not generate hyper text cross reference files offline, but will do so on demand - which could be sightly slow.
 
--h /path/to/repository
-    just generate history cache for the specified repos (absolute path from source root)
+    -H
+        Generate history cache for all repositories
 
--I pattern
-    Only files matching this pattern will be examined (supports wildcards, example: -I *.java -I *.c)
+    -h /path/to/repository
+        just generate history cache for the specified repos (absolute path from source root)
 
--i pattern
-    Ignore the named files or directories (supports wildcards, example: -i *.so -i *.dll)
+    -I pattern
+        Only files matching this pattern will be examined (supports wildcards, example: -I *.java -I *.c)
 
--j class
-    Name of the JDBC driver class used by the history cache. Can use one of the shorthands "client" (org.apache.derby.jdbc.ClientDriver) or "embedded" (org.apache.derby.jdbc.EmbeddedDriver). Default: "client"
+    -i pattern
+        Ignore the named files or directories (supports wildcards, example: -i *.so -i *.dll)
 
--k /path/to/repository
-    Kill the history cache for the given repository and exit. Use '*' to delete the cache for all repositories.
+    -j class
+        Name of the JDBC driver class used by the history cache. Can use one of the shorthands "client" (org.apache.derby.jdbc.ClientDriver) or "embedded" (org.apache.derby.jdbc.EmbeddedDriver). Default: "client"
 
--K
-    List all repository pathes and exit.
+    -k /path/to/repository
+        Kill the history cache for the given repository and exit. Use '*' to delete the cache for all repositories.
 
--L path
-    Path to the subdirectory in the web-application containing the requested stylesheet. The following factory-defaults exist: "default", "offwhite" and "polished"
+    -K
+        List all repository pathes and exit.
 
--l on/off
-    Turn on/off locking of the Lucene database during index generation
+    -L path
+        Path to the subdirectory in the web-application containing the requested stylesheet. The following factory-defaults exist: "default", "offwhite" and "polished"
 
--m number
-    The maximum words to index in a file
+    -l on/off
+        Turn on/off locking of the Lucene database during index generation
 
--N /path/to/symlink
-    Allow this symlink to be followed. Option may be repeated.
+    -m number
+        The maximum words to index in a file
 
--n
-    Do not generate indexes, but process all other command line options
+    -N /path/to/symlink
+        Allow this symlink to be followed. Option may be repeated.
 
--O on/off
-    Turn on/off the optimization of the index database as part of the indexing step
+    -n
+        Do not generate indexes, but process all other command line options
 
--P
-    Generate a project for each of the top-level directories in source root
+    -O on/off
+        Turn on/off the optimization of the index database as part of the indexing step
 
--p /path/to/default/project
-    This is the path to the project that should be selected by default in the web application(when no other project set either in cookie or in parameter). You should strip off the source root.
+    -P
+        Generate a project for each of the top-level directories in source root
 
--Q on/off
-    Turn on/off quick context scan. By default only the first 32k of a file is scanned, and a '[..all..]' link is inserted if the file is bigger. Activating this may slow the server down (Note: this is setting only affects the web application)
+    -p /path/to/default/project
+        This is the path to the project that should be selected by default in the web application(when no other project set either in cookie or in parameter). You should strip off the source root.
 
--q
-    Run as quietly as possible
+    -Q on/off
+        Turn on/off quick context scan. By default only the first 32k of a file is scanned, and a '[..all..]' link is inserted if the file is bigger. Activating this may slow the server down (Note: this is setting only affects the web application)
 
--R /path/to/configuration
-    Read configuration from the specified file
+    -q
+        Run as quietly as possible
 
--r on/off
-    Turn on/off support for remote SCM systems
+    -R /path/to/configuration
+        Read configuration from the specified file
 
--S
-    Search for "external" source repositories and add them
+    -r on/off
+        Turn on/off support for remote SCM systems
 
--s /path/to/source/root
-    The root directory of the source tree
+    -S
+        Search for "external" source repositories and add them
 
--T number
-    The number of threads to use for index generation. By default the number of threads will be set to the number of available CPUs
+    -s /path/to/source/root
+        The root directory of the source tree
 
--t number
-    Default tabsize to use (number of spaces per tab character)
+    -T number
+        The number of threads to use for index generation. By default the number of threads will be set to the number of available CPUs
 
--U host:port
-    Send the current configuration to the specified address (This is most likely the web-app configured with ConfigAddress)
+    -t number
+        Default tabsize to use (number of spaces per tab character)
 
--u url
-    URL to the database that contains the history cache. Default: If -j specifies "embedded", "jdbc:derby:$DATA_ROOT/cachedb;create=true"; otherwise, "jdbc:derby://localhost/cachedb;create=true"
+    -U host:port
+        Send the current configuration to the specified address (This is most likely the web-app configured with ConfigAddress)
 
--V
-    Print version and quit
+    -u url
+        URL to the database that contains the history cache. Default: If -j specifies "embedded", "jdbc:derby:$DATA_ROOT/cachedb;create=true"; otherwise, "jdbc:derby://localhost/cachedb;create=true"
 
--v
-    Print progress information as we go along
+    -V
+        Print version and quit
 
--W /path/to/configuration
-    Write the current configuration to the specified file (so that the web application can use the same configuration
+    -v
+        Print progress information as we go along
 
--w webapp-context
-    Context of webapp. Default is /source. If you specify a different name, make sure to rename source.war to that name.
+    -W /path/to/configuration
+        Write the current configuration to the specified file (so that the web application can use the same configuration
 
--X url:suffix
-    URL Suffix for the user Information provider. Default: ""
+    -w webapp-context
+        Context of webapp. Default is /source. If you specify a different name, make sure to rename source.war to that name.
 
--z number
-    depth of scanning for repositories in directory structure relative to source root
-```
+    -X url:suffix
+        URL Suffix for the user Information provider. Default: ""
+
+    -z number
+        depth of scanning for repositories in directory structure relative to source root
 
 -------------------------------------------------------------------------------------------------
 __PS:默认情况下，调用OpenGork脚本是会生成项目的历史记录的，如果不想生成脚本的历史记录, 可以修改

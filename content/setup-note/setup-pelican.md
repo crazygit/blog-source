@@ -31,66 +31,58 @@ Pelican现在是基于Python 2.7.X的，虽然在Pelican3.2版本也支持Python
 
 #### 安装pythonbrew
 
-```bash
-$ sudo apt-get install zlibc zlib1g zlib1g-dev libbz2-dev libssl-dev libsqlite3-dev libreadline6-dev  # 安装一些安装python会需要的包
-$ curl -kL http://xrl.us/pythonbrewinstall | bash    #这步执行成功后在根目录下会有如下目录: ~/.pythonbrew
-$ echo "[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc" >> ~/.bashrc
-$ source ~/.bashrc
-$ pythonbrew --version      #检查是否安装成功
-$ pythonbrew install --verbose 2.7.5       #安装python 2.7.5
-$ pythonbrew use 2.7.5      #临时在当前会话使用python 2.7.5
-$ which python              #检查python版本信息是否正确
+    $ sudo apt-get install zlibc zlib1g zlib1g-dev libbz2-dev libssl-dev libsqlite3-dev libreadline6-dev  # 安装一些安装python会需要的包
+    $ curl -kL http://xrl.us/pythonbrewinstall | bash    #这步执行成功后在根目录下会有如下目录: ~/.pythonbrew
+    $ echo "[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc" >> ~/.bashrc
+    $ source ~/.bashrc
+    $ pythonbrew --version      #检查是否安装成功
+    $ pythonbrew install --verbose 2.7.5       #安装python 2.7.5
+    $ pythonbrew use 2.7.5      #临时在当前会话使用python 2.7.5
+    $ which python              #检查python版本信息是否正确
 
-# 一些常用命令
-$ pythonbrew list           #查看已经安装了的python版本
-$ pythonbrew off            #禁用pythonbrew，使用系统默认的python环境
-$ pythonbrew list -k        #查看pythonbrew提供了哪些python版本可以安装
-$ pythonbrew switch 2.7.5   #永久切换到python 2.7.5,与use有点不同
-```
+    # 一些常用命令
+    $ pythonbrew list           #查看已经安装了的python版本
+    $ pythonbrew off            #禁用pythonbrew，使用系统默认的python环境
+    $ pythonbrew list -k        #查看pythonbrew提供了哪些python版本可以安装
+    $ pythonbrew switch 2.7.5   #永久切换到python 2.7.5,与use有点不同
 
 #### 创建虚拟环境
 
 使用pythonbrew自带的virtualenv
 
-```bash
-$ pythonbrew use 2.7.5
-$ pythonbrew venv init       #初始化虚拟环境
-$ pythonbrew venv create pelican  #创建名字为pelican的虚拟环境，这里可以将pelican替换成任意你喜欢的名字
-$ pythonbrew venv use pelican     #开启虚拟环境
+    $ pythonbrew use 2.7.5
+    $ pythonbrew venv init       #初始化虚拟环境
+    $ pythonbrew venv create pelican  #创建名字为pelican的虚拟环境，这里可以将pelican替换成任意你喜欢的名字
+    $ pythonbrew venv use pelican     #开启虚拟环境
 
-# 为了以后使用方便,设置penv为开启虚拟环境的别名
-$ echo "alias  penv='pythonbrew use 2.7.5 && pythonbrew venv use pelican'" >> ~/.bashrc
-$ source ~/.bashrc
+    # 为了以后使用方便,设置penv为开启虚拟环境的别名
+    $ echo "alias  penv='pythonbrew use 2.7.5 && pythonbrew venv use pelican'" >> ~/.bashrc
+    $ source ~/.bashrc
 
-# 一些常用的命令
-$ pythonbrew venv list
-$ pythonbrew venv use proj
-$ pythonbrew venv delete proj
-$ pythonbrew venv rename proj proj2
-$ pythonbrew venv clone proj proj2
-```
+    # 一些常用的命令
+    $ pythonbrew venv list
+    $ pythonbrew venv use proj
+    $ pythonbrew venv delete proj
+    $ pythonbrew venv rename proj proj2
+    $ pythonbrew venv clone proj proj2
 
 
 ### 安装pelican
 
-```bash
-$ penv   #开启虚拟环境, 如果跳过了安装pythonbrew和创建虚拟环境，则这条命令不用执行。
-$ pip install pelican
-$ pip install markdown     #pelican 需要的包
-$ pip install typogrif     #pelican 需要的包
-$ pip install ghp-import   #封装的一个发布blog的工具
-```
+    $ penv   #开启虚拟环境, 如果跳过了安装pythonbrew和创建虚拟环境，则这条命令不用执行。
+    $ pip install pelican
+    $ pip install markdown     #pelican 需要的包
+    $ pip install typogrif     #pelican 需要的包
+    $ pip install ghp-import   #封装的一个发布blog的工具
 
 
 ## 博客配置
 
 现在一切环境都好了，就让我们开始动手写博客吧
 
-```bash
-$ mkdir myblog           #创建一个目录，用于存放博客
-$ cd myblog
-$ pelican-quickstart     #开始创建博客的向导
-```
+    $ mkdir myblog           #创建一个目录，用于存放博客
+    $ cd myblog
+    $ pelican-quickstart     #开始创建博客的向导
 
 运行`pelican-quickstart`命令，会有一些问题，根据实际情况选择即可, 暂时不理解的也无所谓，后面可以在配置文件里面修改。
 只是提示一下,当遇到:
@@ -100,24 +92,22 @@ $ pelican-quickstart     #开始创建博客的向导
 
 下面介绍一些常用命令，以后会用得比较频繁。
 
-```bash
-$ make     # 直接运行make， 查看命令帮助
+    $ make     # 直接运行make， 查看命令帮助
 
-   make html                        (re)generate the web site(生成网站)
-   make clean                       remove the generated files
-   make regenerate                  regenerate files upon modification(每当本地文件被修改时，都自动生存网站）
-   make publish                     generate using production settings
-   make serve                       serve site at http://localhost:8000 （开始本地服务，可以通过http://localhost:8000查看）
-   make devserver                   start/restart develop_server.sh (make regenerate 和make serve两个命令的集合）
-   make stopserver                  stop local server (关闭本地服务)
-   ssh_upload                       upload the web site via SSH
-   rsync_upload                     upload the web site via rsync+ssh
-   dropbox_upload                   upload the web site via Dropbox
-   ftp_upload                       upload the web site via FTP
-   s3_upload                        upload the web site via S3
-   github                           upload the web site via gh-pages (这个命令用于将网站发布到github上，后面将具体讲解)
+    make html                        (re)generate the web site(生成网站)
+    make clean                       remove the generated files
+    make regenerate                  regenerate files upon modification(每当本地文件被修改时，都自动生存网站）
+    make publish                     generate using production settings
+    make serve                       serve site at http://localhost:8000 （开始本地服务，可以通过http://localhost:8000查看）
+    make devserver                   start/restart develop_server.sh (make regenerate 和make serve两个命令的集合）
+    make stopserver                  stop local server (关闭本地服务)
+    ssh_upload                       upload the web site via SSH
+    rsync_upload                     upload the web site via rsync+ssh
+    dropbox_upload                   upload the web site via Dropbox
+    ftp_upload                       upload the web site via FTP
+    s3_upload                        upload the web site via S3
+    github                           upload the web site via gh-pages (这个命令用于将网站发布到github上，后面将具体讲解)
 
-```
 
 ### 创建第一篇文章
 
@@ -128,26 +118,22 @@ pelican 支持三种格式的文件，reStructuredText， markdown和html。
 
 创建第一篇博文，直接使用官网的例子。博文看起来应该大致像如下模板：
 
-```markdown
-Title: 文章标题
-Date: 2010-12-03 10:20(日期）
-Category: Python
-Tags: pelican, publishing
-Slug: my-super-post
-Author: Alexis Metaireau
-Summary: Short version for index and feeds
+    Title: 文章标题
+    Date: 2010-12-03 10:20(日期）
+    Category: Python
+    Tags: pelican, publishing
+    Slug: my-super-post
+    Author: Alexis Metaireau
+    Summary: Short version for index and feeds
 
-这里是文章内容。
-##你好，pelican
-```
+    这里是文章内容。
+    ##你好，pelican
 
 将上面的内容保存到`content`目录下，取名为`test.md`
 。现在就要用到前面的命令了。
 
-```bash
-$ make html
-$ make devserver
-```
+    $ make html
+    $ make devserver
 
 现在打开<http://localhost:8000/>，怎么样? 看到了我们的第一篇文章了吧。
 
@@ -160,56 +146,54 @@ $ make devserver
 他的基本上没有修改什么了。
 给一个官方的配置文件示例:
 
-```python
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+    # -*- coding: utf-8 -*-
+    from __future__ import unicode_literals
 
-AUTHOR = 'Alexis Métaireau'
-SITENAME = "Alexis' log"
-SITEURL = 'http://blog.notmyidea.org'
-TIMEZONE = "Europe/Paris"
+    AUTHOR = 'Alexis Métaireau'
+    SITENAME = "Alexis' log"
+    SITEURL = 'http://blog.notmyidea.org'
+    TIMEZONE = "Europe/Paris"
 
-# can be useful in development, but set to False when you're ready to publish
-RELATIVE_URLS = True
+    # can be useful in development, but set to False when you're ready to publish
+    RELATIVE_URLS = True
 
-GITHUB_URL = 'http://github.com/ametaireau/'
-DISQUS_SITENAME = "blog-notmyidea"
-PDF_GENERATOR = False
-REVERSE_CATEGORY_ORDER = True
-LOCALE = "C"
-DEFAULT_PAGINATION = 4
-DEFAULT_DATE = (2012, 3, 2, 14, 1, 1)
+    GITHUB_URL = 'http://github.com/ametaireau/'
+    DISQUS_SITENAME = "blog-notmyidea"
+    PDF_GENERATOR = False
+    REVERSE_CATEGORY_ORDER = True
+    LOCALE = "C"
+    DEFAULT_PAGINATION = 4
+    DEFAULT_DATE = (2012, 3, 2, 14, 1, 1)
 
-FEED_ALL_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+    FEED_ALL_RSS = 'feeds/all.rss.xml'
+    CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
 
-LINKS = (('Biologeek', 'http://biologeek.org'),
-         ('Filyb', "http://filyb.info/"),
-         ('Libert-fr', "http://www.libert-fr.com"),
-         ('N1k0', "http://prendreuncafe.com/blog/"),
-         ('Tarek Ziadé', "http://ziade.org/blog"),
-         ('Zubin Mithra', "http://zubin71.wordpress.com/"),)
+    LINKS = (('Biologeek', 'http://biologeek.org'),
+            ('Filyb', "http://filyb.info/"),
+            ('Libert-fr', "http://www.libert-fr.com"),
+            ('N1k0', "http://prendreuncafe.com/blog/"),
+            ('Tarek Ziadé', "http://ziade.org/blog"),
+            ('Zubin Mithra', "http://zubin71.wordpress.com/"),)
 
-SOCIAL = (('twitter', 'http://twitter.com/ametaireau'),
-          ('lastfm', 'http://lastfm.com/user/akounet'),
-          ('github', 'http://github.com/ametaireau'),)
+    SOCIAL = (('twitter', 'http://twitter.com/ametaireau'),
+            ('lastfm', 'http://lastfm.com/user/akounet'),
+            ('github', 'http://github.com/ametaireau'),)
 
-# global metadata to all the contents
-DEFAULT_METADATA = (('yeah', 'it is'),)
+    # global metadata to all the contents
+    DEFAULT_METADATA = (('yeah', 'it is'),)
 
-# static paths will be copied under the same name
-STATIC_PATHS = ["pictures", ]
+    # static paths will be copied under the same name
+    STATIC_PATHS = ["pictures", ]
 
-# A list of files to copy from the source to the destination
-FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)
+    # A list of files to copy from the source to the destination
+    FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)
 
-# custom page generated with a jinja2 template
-TEMPLATE_PAGES = {'pages/jinja2_template.html': 'jinja2_template.html'}
+    # custom page generated with a jinja2 template
+    TEMPLATE_PAGES = {'pages/jinja2_template.html': 'jinja2_template.html'}
 
-# foobar will not be used, because it's not in caps. All configuration keys
-# have to be in caps
-foobar = "barbaz"
-```
+    # foobar will not be used, because it's not in caps. All configuration keys
+    # have to be in caps
+    foobar = "barbaz"
 
 ### 主题安装
 
@@ -217,27 +201,22 @@ foobar = "barbaz"
 供你选择了，在<https://github.com/getpelican/pelican-themes>已经有很多现成的主题了，打开每个主题的文件夹都有一张主题效果的截图，可以方便选择自己喜欢的主题。什么？这些主题都不满意？好吧，你还可以选择[创建属于自己独有的主题](http://docs.getpelican.com/en/3.2/themes.html#theming-pelican)。由于个人比较懒，信奉拿来主义，所以就选择了`tuxlite_tbs`这个主题，后面自己稍稍修改了下。
 
 废话不多说，让我们开始安装主题吧。
-```bash
-$ git clone git://github.com/getpelican/pelican-themes.git ~/pelican-themes # 下载主题到`~/pelican-themes/`目录下
-$ cd ~/pelican-themes/
-$ git submodule init  #由于这个git库里面的一些主题是单独的一个子模块，所以将它们一起下载下来
-$ git submodule update
-```
+    $ git clone git://github.com/getpelican/pelican-themes.git ~/pelican-themes # 下载主题到`~/pelican-themes/`目录下
+    $ cd ~/pelican-themes/
+    $ git submodule init  #由于这个git库里面的一些主题是单独的一个子模块，所以将它们一起下载下来
+    $ git submodule update
 
 好了，现在已经有了所有的主题了，打开每个主题的文件夹都有一张主题效果的截图，选择自己喜欢的主题。
 
 修改`publishconf.py` 文件，添加`THEME`关键字，如果已经有了，则直接修改值即可，我选择的是`tuxlite-tbs`
 
-```bash
-THEME = "~/pelican-themes/tuxlite-tbs"
-```
+    THEME = "~/pelican-themes/tuxlite-tbs"
 
 然后重新执行
 
-```bash
-$ make html
-$ make devserver
-```
+    $ make html
+    $ make devserver
+
 访问<http://localhost:8000/>看看新的主题效果吧。
 
 ### 主题定制
@@ -249,58 +228,52 @@ $ make devserver
 [提示client.js没有sendMessage方法](http://open.weibo.com/qa/index.php?qa=11802&qa_1=%E4%BD%BF%E7%94%A8%E5%85%B3%E6%B3%A8%E6%8C%89%E9%92%AEjavascript%E7%AE%80%E5%8C%96%E7%89%88%EF%BC%8C%E6%8F%90%E7%A4%BAclient-js%E6%B2%A1%E6%9C%89sendmessage%E6%96%B9%E6%B3%95&code=4b3704c5bce7d8cc46de2fe229687bdb).
 
 因此下面主要介绍如何添加WBML标准版本的。取得类似下面的代码
-```html
-<wb:follow-button uid="2991975565" type="red_1" width="67" height="24" ></wb:follow-button>
-```
+
+    <wb:follow-button uid="2991975565" type="red_1" width="67" height="24" ></wb:follow-button>
+
 注意上面的uid就是自己微博帐号的id，type就是选择的样式。
 为了让这个代码有通用性。我将它修改为如下：
-```html
-<wb:follow-button uid="{{WEIBO_UID}}" type="{{WEIBO_TYPE}}" width="100%" height="64" ></wb:follow-button>
-```
+
+    <wb:follow-button uid="{{WEIBO_UID}}" type="{{WEIBO_TYPE}}" width="100%" height="64" ></wb:follow-button>
+
 这样我们就可以通过在`pelicanconf.py`通过配置`WEIBO_UID`和`WEIBO_TYPE`灵活地设置帐号和样式。
 将上面的代码保存在weibo.html文件中，并将文件保存到主题代码库的`~/pelican-themes/tuxlite-tbs/templates`目录下。
 再修改这个目录下的base.html文件，引用我们的weibo.html。具体改动如下:
 
 在HTML标签中增加XML命名空间
 
-```html
-<html xmlns:wb=“http://open.weibo.com/wb”>
-```
+    <html xmlns:wb=“http://open.weibo.com/wb”>
 
 在HEAD头中引入WB.JS
-```html
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
-```
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 在需要显示微博关注按钮的地方includ刚刚的weibo.html，我把它添加在了社交下面.同时设置了WEIBO变量来设置是否显示微博关注按钮
 
-```jinja
-{% if WEIBO %}
-<div class="social">
-<div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
-<ul class="nav nav-list">
-    <li class="nav-header">
-    新浪微博
-    </li>
-    {% include "weibo.html" %}
-</ul>
-</div>
-</div>
-{% endif %}
-```
+    {% if WEIBO %}
+    <div class="social">
+    <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+    <ul class="nav nav-list">
+        <li class="nav-header">
+        新浪微博
+        </li>
+        {% include "weibo.html" %}
+    </ul>
+    </div>
+    </div>
+    {% endif %}
 
 修改`pelicanconf.py`, 添加如下字段：
-```python
-# 新浪微博新关注按钮
-WEIBO = True
-WEIBO_UID = 1768615155        # 填入uid
-WEIBO_TYPE = "red_3"
-```
+
+    # 新浪微博新关注按钮
+    WEIBO = True
+    WEIBO_UID = 1768615155        # 填入uid
+    WEIBO_TYPE = "red_3"
+    ```
 
 编译发布并预览。在本地预览的时候可能不会看到效果。需要发布到github pages上面才能看到.下面马上会讲如何部署到github上面.
-```bash
-$ make html
-$ make devserver
-```
+
+    $ make html
+    $ make devserver
 
 
 ### 部署到Github上面
@@ -316,35 +289,34 @@ $ make devserver
 具体使用[参考这里](http://docs.getpelican.com/en/3.2/tips.html#publishing-to-github).
 
 但是需要根据实际修改Makefile文件中的
-```makefile
-github: publish
-    ghp-import $(OUTPUTDIR)
-    git push origin gh-pages   #根据实际使用的pages情况修改这里
-```
+
+    github: publish
+        ghp-import $(OUTPUTDIR)
+        git push origin gh-pages   #根据实际使用的pages情况修改这里
+
 修改好了之后，可以直接使用`make github` 发布博客了.
 
 我使用的用户级别的pages时，具体修改如下：
-```bash
-$ cd myblog # 进入博客代码目录
-$ git init
-$ git remote add origin git@github.com:username/username.github.com.git # 需要替换username
-$ git add .
-$ git commit -m 'init pelican source code'
-$ penv  #打开虚拟环境
-$ make html 编译代码
-```
+
+    $ cd myblog # 进入博客代码目录
+    $ git init
+    $ git remote add origin git@github.com:username/username.github.com.git # 需要替换username
+    $ git add .
+    $ git commit -m 'init pelican source code'
+    $ penv  #打开虚拟环境
+    $ make html 编译代码
 
 修改Makefile文件如下内容：
-```makefile
-github: publish
-    ghp-import $(OUTPUTDIR) # 这一步会在本地创建一个gh-pages分支。并将OUTPUTDIR里面的内容拷贝到这个分支
-    git push -f origin gh-pages:master
-# 注意我这里添加了参数f，在后面每次往master 分支提交代码的时候，如果有冲突，会强制覆盖master的代码
-```
+
+    github: publish
+        ghp-import $(OUTPUTDIR) # 这一步会在本地创建一个gh-pages分支。并将OUTPUTDIR里面的内容拷贝到这个分支
+        git push -f origin gh-pages:master
+    # 注意我这里添加了参数f，在后面每次往master 分支提交代码的时候，如果有冲突，会强制覆盖master的代码
+
 最后一步，提交代码
-```bash
-$ make github
-```
+
+    $ make github
+
 好了，打开你自己的github pages, 如<http://username.github.io/>查看效果。
 
 
@@ -366,9 +338,8 @@ $ make github
 
 由于markdown语法本身没有代办设置图片布局，所以可以用html标签来设置
 
-```html
-<p align="center"><img src="http://pic.yupoo.com/crazygit/CQBeKErP/medish.jpg" title="Test Image"/></p>
-```
+    <p align="center"><img src="http://pic.yupoo.com/crazygit/CQBeKErP/medish.jpg" title="Test Image"/></p>
+
 <p align="center"><img src="http://pic.yupoo.com/crazygit/CQBeKErP/medish.jpg" title="Test Image"/></p>
 
 

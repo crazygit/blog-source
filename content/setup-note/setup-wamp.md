@@ -11,9 +11,7 @@ Summary: how to use pelican to setup wamp
 PHP开发基本也就是在不同平台下，要么是LAMP(Linux + Apache + Mysql + PHP)，要么就是WAMP(Windows + Apache + Mysql +PHP), 
 个人感觉在ubuntu环境下搭建环境比较简单，只需要一个命令
 
-```bash
-$ sudo apt-get install -y apache2 mysql-server-5.5 php5 php5-gd php5-mysql php5-xdebug libapache2-mod-php5 phpmyadmin 
-```
+    $ sudo apt-get install -y apache2 mysql-server-5.5 php5 php5-gd php5-mysql php5-xdebug libapache2-mod-php5 phpmyadmin 
 
 然后通过少许配置， LAMP环境就基本上搭建好了。系统默认帮我们做了很多事情，但是为了学习，我们还是尝试下在windows下搭建吧！虽然在windows下面也有很多WAMP的集成环境，如：
 >XAMPP - XAMPP是一款具有中文说明的功能全面的集成环境，XAMPP并不仅仅针对Windows，而是一个适用于Linux、Windows、Mac OS X 和Solaris 的易于安装的Apache 发行版。软件包中包含Apache 服务器、MySQL、SQLite、PHP、Perl、FileZilla FTP Server、Tomcat等等。默认安装开放了所有功能，安全性有问题，需要进行额外的安全设定。
@@ -74,12 +72,12 @@ http://www.microsoft.com/en-us/download/confirmation.aspx?id=8328
 因此需要将`httpd.conf`文件中所有的`c:/Apache24`替换成`D:/wamp/Apache24`（**注意**:在`httpd.conf`文件中表示文件路径都是用的正斜杠，而不是反斜杠）。跟大部分网上讲的配置方法一样，在`httpd.conf` 中有如下几处是需要注意修改的
 
 <pre>
-ServerRoot "D:/wamp/Apache24"  # apache服务器安装路径
-Listen 80                      # 服务器监听的端口
-ServerName localhost:80        # 服务器的域名，测试环境下一般是localhost
-ServerAdmin lianglin999@gmail.com   # 服务器维护人员的邮箱
-DocumentRoot "D:/wamp/Apache24/htdocs"  # 服务器的根目录
-&lt;Directory "D:/wamp/Apache24/htdocs"&gt;    # 这里和服务器的根目录路径一致
+    ServerRoot "D:/wamp/Apache24"  # apache服务器安装路径
+    Listen 80                      # 服务器监听的端口
+    ServerName localhost:80        # 服务器的域名，测试环境下一般是localhost
+    ServerAdmin lianglin999@gmail.com   # 服务器维护人员的邮箱
+    DocumentRoot "D:/wamp/Apache24/htdocs"  # 服务器的根目录
+    &lt;Directory "D:/wamp/Apache24/htdocs"&gt;    # 这里和服务器的根目录路径一致
 </pre>
 
 ### 3. 安装和启动Apache服务
@@ -87,20 +85,16 @@ DocumentRoot "D:/wamp/Apache24/htdocs"  # 服务器的根目录
 先将`D:\wamp\Apache24\bin\`添加到系统环境变量中。方便后面安装和启动服务。
 运行cmd窗口，执行如下命令
 
-```bash
-httpd -k install -n service_name            # 安装apache服务 -n 是可选的，表示指定服务名字，不加-n使用默认的服务名字
-httpd -k start/stop/restart -n service_name # 运行/停止/重启 apache服务, 同样，如果上面没有使用-n参数，这里也可以省去
-httpd -k uninstall -n service_name          # 卸载apache服务
-net start/stop service_name                 # 也可以运行/停止 apache服务
-httpd -help                                 # 查看更多帮助信息
-```
+    httpd -k install -n service_name            # 安装apache服务 -n 是可选的，表示指定服务名字，不加-n使用默认的服务名字
+    httpd -k start/stop/restart -n service_name # 运行/停止/重启 apache服务, 同样，如果上面没有使用-n参数，这里也可以省去
+    httpd -k uninstall -n service_name          # 卸载apache服务
+    net start/stop service_name                 # 也可以运行/停止 apache服务
+    httpd -help                                 # 查看更多帮助信息
 
 安装并运行Apache服务
 
-```bash
-httpd -k install
-httpd -k start
-```
+    httpd -k install
+    httpd -k start
 
 如果没有修改配置文件中的默认80端口的话，访问  
 <http://localhost/>
@@ -129,18 +123,16 @@ http://www.chenyudong.com/archives/installing-mysql-on-microsoft-windows-using-a
 
 运行CMD窗口，跟安装Apache服务类似，直接运行
 
-```bash
-mysqld --install MySQL5.5(service_name)  # Mysql5.5 是service_name，是可选的，不指定的话它会默认使用一个服务名
-net start/stop MySQL5.5                  # 启动/停止Mysql服务
-mysqld --remove MySQL5.5                 # 移除Mysql服务
+    mysqld --install MySQL5.5(service_name)  # Mysql5.5 是service_name，是可选的，不指定的话它会默认使用一个服务名
+    net start/stop MySQL5.5                  # 启动/停止Mysql服务
+    mysqld --remove MySQL5.5                 # 移除Mysql服务
 
-# 更改Mysql数据库密码，第一次使用时，密码默认为空
-mysql -u root -p                        # 从命令行中进入mysql的客户端
-use mysql;                              # 使用mysql这个数据库
-update user set password=password("root_passwd") where user="root";      # 对root密码进行更改
-FLUSH PRIVILEGES;                       
-# 现在退出，便可以使用root_passwd密码登录了
-```
+    # 更改Mysql数据库密码，第一次使用时，密码默认为空
+    mysql -u root -p                        # 从命令行中进入mysql的客户端
+    use mysql;                              # 使用mysql这个数据库
+    update user set password=password("root_passwd") where user="root";      # 对root密码进行更改
+    FLUSH PRIVILEGES;                       
+    # 现在退出，便可以使用root_passwd密码登录了
 
 更多安装细节可以查看[Mysql手册](http://dev.mysql.com/doc/refman/5.6/en/windows-installation.html)。
 
@@ -157,48 +149,47 @@ PHP安装包的版本分线程安全和非线程安全两种，具体两种有�
 
 <pre>
 # 把;error_log = php_errors.log 修改为
-error_log = D:\wamp\php-5.5.3-Win32-VC11-x86\logs
+    error_log = D:\wamp\php-5.5.3-Win32-VC11-x86\logs
 
 # ;date.timezone =修改为
-date.timezone = PRC
- 
+    date.timezone = PRC
+    
 # 下面这2个,自己决定了
-post_max_size = 100M
+    post_max_size = 100M
 # upload_max_filesize通常比post_max_size小
-upload_max_filesize = 50M
- 
+    upload_max_filesize = 50M
+    
 # 修改相关路径
 # 上传暂存路径,别忘了创建对应的文件夹
-upload_tmp_dir = D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\upload
-session.save_path = D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\session
-extension_dir = D:\wamp\php-5.5.3-Win32-VC11-x86\ext
+    upload_tmp_dir = D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\upload
+    session.save_path = D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\session
+    extension_dir = D:\wamp\php-5.5.3-Win32-VC11-x86\ext
 
 # 取消常用的扩展前面的分号注释
-extension=php_curl.dll
-extension=php_gd2.dll
-extension=php_mbstring.dll
-extension=php_mysql.dll
-extension=php_mysqli.dll
-extension=php_pdo_mysql.dll
+    extension=php_curl.dll
+    extension=php_gd2.dll
+    extension=php_mbstring.dll
+    extension=php_mysql.dll
+    extension=php_mysqli.dll
+    extension=php_pdo_mysql.dll
 </pre>
 最后再创建相对应的目录`D:\wamp\php-5.5.3-Win32-VC11-x86\logs`,`D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\upload`,`D:\wamp\php-5.5.3-Win32-VC11-x86\tmp\session`
 
 最后，让apache认识php，修改apache的配置文件`D:\wamp\Apache24\conf\httpd.conf`添加下面的内容
-```
-# php配置 
-LoadModule php5_module "E:/wamp_x64/php-5.5.3-Win32-VC11-x64/php5apache2_4.dll"
-AddHandler application/x-httpd-php .php
 
-# 配置 php.ini 的路径
-PHPIniDir "E:/wamp_x64/php-5.5.3-Win32-VC11-x64
+    # php配置 
+    LoadModule php5_module "E:/wamp_x64/php-5.5.3-Win32-VC11-x64/php5apache2_4.dll"
+    AddHandler application/x-httpd-php .php
 
-# 同时修改
-DirectoryIndex index.html index.php
-```
+    # 配置 php.ini 的路径
+    PHPIniDir "E:/wamp_x64/php-5.5.3-Win32-VC11-x64
+
+    # 同时修改
+    DirectoryIndex index.html index.php
 
 在apache根目录下创建`D:/wamp/Apache24/htdocs/phpinfo.php`文件，内容如下:
 <pre>
-&lt;?php phpinfo() ?&gt;
+    &lt;?php phpinfo() ?&gt;
 </pre>
 
 重启apache服务，访问 http://localhost/phpinfo.php, 如果看到php相关信息，表示php安装成功。
@@ -209,23 +200,21 @@ Xdebug 是一个PHP开发的调试工具，跟它齐名的另一个叫`Zend Debu
 安装xdebug，首先需要下载适合版本的xdebug，如果不知道自己应该下载哪个版本的话，可以将你phpinfo();方法得到的页面内容粘贴到[这里](http://xdebug.org/wizard.php)，它会自动分析出哪个版本的xdebug插件适合你。
 将下载下来的dll文件保存到php的安装路径`D:\wamp\php-5.5.3-Win32-VC11-x86\ext`目录下，然后修改`D:\wamp\php-5.5.3-Win32-VC11-x86\php.ini`文件，添加如下内容：
 
-```
-[XDebug]
-zend_extension = "D:\wamp\php-5.5.3-Win32-VC11-x86\extphp_xdebug.dll"
-xdebug.auto_trace = 1
-xdebug.collect_params = 1
-xdebug.collect_return = 1
-xdebug.profiler_append = 0
-xdebug.profiler_enable = 1
-xdebug.profiler_enable_trigger = 0
-xdebug.profiler_output_dir = "D:\wamp\php-5.5.3-Win32-VC11-x86\tmp"
-xdebug.profiler_output_name = "cachegrind.out.%t-%s"
-xdebug.remote_enable = 1
-xdebug.remote_handler = "dbgp"
-xdebug.remote_host = "localhost"
-xdebug.remote_port = 9000
-xdebug.trace_output_dir = "D:\wamp\php-5.5.3-Win32-VC11-x86\tmp"
-```
+    [XDebug]
+    zend_extension = "D:\wamp\php-5.5.3-Win32-VC11-x86\extphp_xdebug.dll"
+    xdebug.auto_trace = 1
+    xdebug.collect_params = 1
+    xdebug.collect_return = 1
+    xdebug.profiler_append = 0
+    xdebug.profiler_enable = 1
+    xdebug.profiler_enable_trigger = 0
+    xdebug.profiler_output_dir = "D:\wamp\php-5.5.3-Win32-VC11-x86\tmp"
+    xdebug.profiler_output_name = "cachegrind.out.%t-%s"
+    xdebug.remote_enable = 1
+    xdebug.remote_handler = "dbgp"
+    xdebug.remote_host = "localhost"
+    xdebug.remote_port = 9000
+    xdebug.trace_output_dir = "D:\wamp\php-5.5.3-Win32-VC11-x86\tmp"
 
 最后，重新启动apache即可。访问phpinfo();页面检查是否有xdebug，如果有，表示安装成功。
 
