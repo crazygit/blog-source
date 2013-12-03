@@ -113,3 +113,7 @@ SITEMAP = {
         'pages': 'monthly'
     }
 }
+
+# several typographical improvements will be incorporated into the
+# generated HTML via the Typogrify library
+TYPOGRIFY = True

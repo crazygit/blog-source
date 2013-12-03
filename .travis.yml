@@ -10,11 +10,14 @@ python:
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq optipng
+    - sudo apt-get install -qq --no-install-recommends asciidoc
     - git submodule update --init --recursive
 
-install: pip install -r requirements/prod.txt --use-mirrors
+install:
+    - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then ln -s /usr/share/asciidoc/asciidocapi.py ~/virtualenv/python2.7/lib/python2.7/site-packages/; fi
+    - pip install -r requirements/prod.txt --use-mirrors
 
-script: make publish DEBUG=1
+script: make publish
 
 notifications:
   email:
