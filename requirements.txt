@@ -1,8 +1,0 @@
-pelican
-markdown
-Fabric
-ghp-import
-pygments
-webassets
-cssmin
-beautifulsoup4
