@@ -19,7 +19,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo "*.webassets-cache" > .gitignore
     #add, commit and push files
     git add -Af .
-    git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to Github Pages"
+    git commit -m "Travis build $TRAVIS_BUILD_NUMBER: $TRAVIS_COMMIT"
     git push -fq origin $BRANCH > /dev/null
     echo -e "Deploy completed\n"
 fi
