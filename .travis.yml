@@ -15,7 +15,7 @@ before_install:
 
 install:
     - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then ln -s /usr/share/asciidoc/asciidocapi.py ~/virtualenv/python2.7/lib/python2.7/site-packages/; fi
-    - pip install -q -r requirements/prod.txt --use-mirrors
+    - pip install -r requirements/prod.txt
 
 script: make publish
 
