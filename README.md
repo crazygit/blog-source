@@ -10,3 +10,7 @@
 * <http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html>
 * <http://about.travis-ci.org/docs/user/getting-started/>
 * <http://about.travis-ci.org/docs/user/build-configuration/>
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/crazygit/blog-source/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
