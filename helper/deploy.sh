@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 
 set -x
+
+
 BRANCH=master
 TARGET_REPO=crazygit/crazygit.github.io
 PELICAN_OUTPUT_FOLDER=output
 
+function show()
+{
+    set +x
+    echo -e "\033[32;1m==========================\033[0m"
+    echo -e "\033[34;1m[INFO]$1\033[0m"
+    echo -e "\033[32;1m==========================\033[0m"
+    set -x
+}
+
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    echo -e "Starting to deploy to Github Pages\n"
+    show "Starting to deploy to Github Pages"
     if [ "$TRAVIS" == "true" ]; then
         git config --global user.email "lianglin999@gmail.com"
         git config --global user.name "crazygit"
@@ -15,11 +26,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-html > /dev/null
     # go into directory and copy data we're interested in to that directory
     cd blog-html
-    rsync -av --delete --exclude=.git  ../$PELICAN_OUTPUT_FOLDER/* .
-    echo "*.webassets-cache" > .gitignore
+    rsync -avq --delete --exclude=.git --exclude="theme/.webassets-cache/" ../$PELICAN_OUTPUT_FOLDER/* .
     #add, commit and push files
     git add -Af .
     git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to Github Pages"
     git push -fq origin $BRANCH > /dev/null
-    echo -e "Deploy completed\n"
+    show "Deploy completed"
 fi
