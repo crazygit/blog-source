@@ -6,54 +6,54 @@ Author: crazygit
 Summary: how to use pelican to setup personal blog
 
 
-从大学开始，就有点尝试自己写博客记录东西的习惯，最初基本上是从网上转载一些别人写的文章，方便自己以后查找。慢慢地，也想写一些自己的东西。开始用的是百度空间，可是这种门户的东西用起来很不爽，限制也太多了。后面慢慢接触了git，markdown等东西，了解了一些静态博客引擎。开始知道了Jeklly, Octopress等，最初尝试使用了一段时间Octopress，但是因为它是基于Ruby的，对于Ruby本人并不熟悉。后面发现了Pelican, 理由是它是基于Python，本人现在也正处于Python学习阶段，因此想尝试一下。
-搭建的时候，Pelican3.3刚刚发布不久，下面的一切都将基于Pelican3.3来介绍。
+为什么要搭建自己的blog呢？一句话，用自己喜欢的方式，写下想记录的东西。
+ 
+~~从大学开始，就有点尝试自己写博客记录东西的习惯，最初基本上是从网上转载一些别人写的文章，方便自己以后查找。慢慢地，也想写一些自己的东西。开始用的是百度空间，可是这种门户的东西用起来很不爽，限制也太多了。后面慢慢接触了git，markdown等东西，了解了一些静态博客引擎。开始知道了Jeklly, Octopress等，最初尝试使用了一段时间Octopress，但是因为它是基于Ruby的，对于Ruby本人并不熟悉。后面发现了Pelican, 理由是它是基于Python，本人现在也正处于Python学习阶段，因此想尝试一下。~~
 
-## 需要的知识
+ 
+## 安装Pelican
 
-* 会简单的git操作
-* 知道markdown语法
-* 了解html, css, javascript就更好了。不了解也没有关系，比如我自己^-^.
+> 官方入门指南：<http://docs.getpelican.com/en/latest/getting_started.html>.
 
-## 环境配置
-官方入门指南：<http://docs.getpelican.com/en/latest/getting_started.html>.
-Pelican现在是基于Python 2.7.X的，虽然在Pelican3.2版本也支持Python3, 但并不是很成熟，所以Python 2.7.X是首要推荐的。
+搭建的时候，Pelican3.3刚刚发布不久，后面的一切都将基于Pelican3.3来介绍。
+使用Pelican需要python环境，官方推荐的python版本是2.7.X，因此开始之前，最好是检
+查一下当前系统的python版本是否满足情况。
 
-### Python 2.7.X安装
-*如果本地的Python版本是2.7.X, 则可以跳过`安装pythonbrew`和`创建虚拟环境`*.
-由于本人在搭建博客的时候使用的是Ubuntu 10.04，默认的python版本是2.6,因此需要安装Python2.7.x,
-为了方便及不影响当前系统的python版本， 我决定使用[pythonbrew](https://github.com/utahta/pythonbrew)来搭建Python2.7.x环境。
-安装pythonbrew, 创建python2.7.x的环境，主要参考了:
+### 创建虚拟环境
 
-* [官方文档](https://github.com/utahta/pythonbrew/blob/master/README.rst)
-* [Python虚拟环境以多版本开发利器](http://www.sinosky.org/pythons-virtual-environment-and-multi-version-programming-tools-virtualenv-and-pythonbrew.html>)
-* [设置一个干净的Python环境](http://765i.cn/%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%B9%B2%E5%87%80%E7%9A%84python%E7%8E%AF%E5%A2%83%EF%BC%88python%E6%B2%99%E7%9B%92%EF%BC%89/)
+如果当前系统默认是2.7.X, 我们则可以直接创建一个虚拟环境来为安装pelican做准备。
+具体可以参考: <http://liuzhijun.iteye.com/blog/1872241>
 
-#### 安装pythonbrew
 
-    $ sudo apt-get install zlibc zlib1g zlib1g-dev libbz2-dev libssl-dev libsqlite3-dev libreadline6-dev  # 安装一些安装python会需要的包
-    $ curl -kL http://xrl.us/pythonbrewinstall | bash    #这步执行成功后在根目录下会有如下目录: ~/.pythonbrew
+另一个情况是当前系统默认python版本不是2.7.X的，
+为了方便及不影响当前系统的python版本，可以使用[pythonbrew](https://github.com/utahta/pythonbrew)来搭建Python2.7.x环境。
+安装pythonbrew, 创建python2.7.x的环. 安装步骤: <https://github.com/utahta/pythonbrew/blob/master/README.rst>
+
+    :::bash
+    # 安装pythonbrew
+    $ curl -kL http://xrl.us/pythonbrewinstall | bash    # 这步执行成功后在根目录下会有如下目录: ~/.pythonbrew
     $ echo "[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc" >> ~/.bashrc
     $ source ~/.bashrc
-    $ pythonbrew --version      #检查是否安装成功
-    $ pythonbrew install --verbose 2.7.5       #安装python 2.7.5
-    $ pythonbrew use 2.7.5      #临时在当前会话使用python 2.7.5
-    $ which python              #检查python版本信息是否正确
+    $ pythonbrew --version      # 检查是否安装成功
+    $ pythonbrew install --verbose 2.7.5       # 安装python 2.7.5
+    $ pythonbrew use 2.7.5      # 临时在当前会话使用python 2.7.5
+    $ which python              # 检查python版本信息是否正确
 
-    # 一些常用命令
-    $ pythonbrew list           #查看已经安装了的python版本
-    $ pythonbrew off            #禁用pythonbrew，使用系统默认的python环境
-    $ pythonbrew list -k        #查看pythonbrew提供了哪些python版本可以安装
-    $ pythonbrew switch 2.7.5   #永久切换到python 2.7.5,与use有点不同
+    # 一些关于pythonbrew的常用命令
+    $ pythonbrew list           # 查看已经安装了的python版本
+    $ pythonbrew off            # 禁用pythonbrew，使用系统默认的python环境
+    $ pythonbrew list -k        # 查看pythonbrew提供了哪些python版本可以安装
+    $ pythonbrew switch 2.7.5   # 永久切换到python 2.7.5,与use有点不同
+    # 更多命令可以参考官方文档
 
-#### 创建虚拟环境
 
-使用pythonbrew自带的virtualenv
+ 使用pythonbrew自带的virtualenv
 
+    :::bash
     $ pythonbrew use 2.7.5
-    $ pythonbrew venv init       #初始化虚拟环境
-    $ pythonbrew venv create pelican  #创建名字为pelican的虚拟环境，这里可以将pelican替换成任意你喜欢的名字
-    $ pythonbrew venv use pelican     #开启虚拟环境
+    $ pythonbrew venv init       # 初始化虚拟环境
+    $ pythonbrew venv create pelican  # 创建名字为pelican的虚拟环境，这里可以将pelican替换成任意你喜欢的名字
+    $ pythonbrew venv use pelican     # 开启虚拟环境
 
     # 为了以后使用方便,设置penv为开启虚拟环境的别名
     $ echo "alias  penv='pythonbrew use 2.7.5 && pythonbrew venv use pelican'" >> ~/.bashrc
@@ -69,17 +69,21 @@ Pelican现在是基于Python 2.7.X的，虽然在Pelican3.2版本也支持Python
 
 ### 安装pelican
 
-    $ penv   #开启虚拟环境, 如果跳过了安装pythonbrew和创建虚拟环境，则这条命令不用执行。
+在配置好了续集环境之后，就让我们进入虚拟环境安装pelican吧
+
+    :::bash
+    # 需要先激活虚拟环境
     $ pip install pelican
-    $ pip install markdown     #pelican 需要的包
-    $ pip install typogrif     #pelican 需要的包
-    $ pip install ghp-import   #封装的一个发布blog的工具
+    $ pip install markdown     # pelican 需要的包
+    $ pip install typogrif     # pelican 需要的包
+    $ pip install ghp-import   # 封装的一个发布blog的工具
 
 
 ## 博客配置
 
 现在一切环境都好了，就让我们开始动手写博客吧
 
+    :::bash
     $ mkdir myblog           #创建一个目录，用于存放博客
     $ cd myblog
     $ pelican-quickstart     #开始创建博客的向导
@@ -92,6 +96,8 @@ Pelican现在是基于Python 2.7.X的，虽然在Pelican3.2版本也支持Python
 
 下面介绍一些常用命令，以后会用得比较频繁。
 
+
+<pre>
     $ make     # 直接运行make， 查看命令帮助
 
     make html                        (re)generate the web site(生成网站)
@@ -107,6 +113,7 @@ Pelican现在是基于Python 2.7.X的，虽然在Pelican3.2版本也支持Python
     ftp_upload                       upload the web site via FTP
     s3_upload                        upload the web site via S3
     github                           upload the web site via gh-pages (这个命令用于将网站发布到github上，后面将具体讲解)
+</pre>
 
 
 ### 创建第一篇文章

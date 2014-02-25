@@ -24,7 +24,7 @@ notifications:
     on_success: always
     on_failure: always
 
-after_success: "./deploy.sh"
+after_success: "./helper/deploy.sh"
 
 env:
   global:
