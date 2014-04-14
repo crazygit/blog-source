@@ -30,6 +30,8 @@ USE_FOLDER_AS_CATEGORY = True
 DEFAULT_CATEGORY = u'Others'
 
 # URL settings
+ARCHIVES_URL = "archives.html"
+
 ARTICLE_URL = 'posts/{slug}.html'
 ARTICLE_SAVE_AS = 'posts/{slug}.html'
 
