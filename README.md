@@ -12,5 +12,6 @@
 * <http://about.travis-ci.org/docs/user/build-configuration/>
 
 
+[![Build Status](https://travis-ci.org/crazygit/blog-source.svg?branch=master)](https://travis-ci.org/crazygit/blog-source)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/crazygit/blog-source/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
