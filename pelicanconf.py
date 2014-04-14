@@ -2,9 +2,17 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+#####################################
+#                                   #
+#    SETTINGS                       #
+#                                   #
+#####################################
+
 AUTHOR = u'crazygit'
 SITENAME = u'Soul Mate'
 SITE_SUBNAME = u'宁静的夜，心中一片静谧'
+
+# local test url
 SITEURL = 'http://localhost/blog'
 
 TIMEZONE = 'Asia/Chongqing'
@@ -18,9 +26,8 @@ TRANSLATION_FEED_ATOM = None
 
 
 # Use folder as category,  don’t specify a category in your post metadata
-
 USE_FOLDER_AS_CATEGORY = True
-DEFAULT_CATEGORY = u'其它'
+DEFAULT_CATEGORY = u'Others'
 
 # URL settings
 ARTICLE_URL = 'posts/{slug}.html'
@@ -28,20 +35,20 @@ ARTICLE_SAVE_AS = 'posts/{slug}.html'
 
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = '{slug}.html'
-#YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
-#MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/index.html'
+# YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
+# MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%m}/index.html'
 
 
 # pagination settings
 DEFAULT_PAGINATION = 10
 
 # theme settings
-THEME = 'blog-theme'
+THEME = 'pelican-themes-tuxlite-tbs-mine'
 
 # code highlight style
 # [default emacs friendly colorful autumn murphy manni
 # monokai perldoc pastie borland trac native fruity bw vs tango]
-PYGMENT_STYLE = "colorful"
+PYGMENT_STYLE = "emacs"
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
 # CNAME settings
@@ -57,16 +64,12 @@ EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
     }
 
-# ACCOUNT settings
-GITHUB_URL = "https://github.com/crazygit"
-
-# DISQUS_SITENAME = 'lianglin999'
-BAIDU_SHARE_UID = 5513994
-YOUYAN_UID = 1774842
-BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
+# several typographical improvements will be incorporated into the
+# generated HTML via the Typogrify library
+TYPOGRIFY = True
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+# RELATIVE_URLS = True
 
 # Links
 LINKS = (
@@ -75,29 +78,45 @@ LINKS = (
     ("Cloudbees", "http://www.cloudbees.com"),
     ("Pelican", "http://docs.getpelican.com/"),
     ("Jinja", "http://jinja.pocoo.org/"),
-    ("Bootstrap中文网", "http://www.bootcss.com/"),
 )
 
-# plugins
+#####################################
+#                                   #
+#    ACCOUNTS                       #
+#                                   #
+#####################################
+GITHUB_URL = "https://github.com/crazygit"
+DISQUS_SITENAME = 'lianglin999'
+BAIDU_SHARE_UID = 5513994
+# YOUYAN_UID = 1774842
+BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
+
+
+#####################################
+#                                   #
+#    PLUGINSS                       #
+#                                   #
+#####################################
+# plugins path
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['assets', 'cjk-auto-spacing',
-           'extract_toc', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+# PLUGINS = ['assets', 'cjk-auto-spacing', 'extract_toc', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
 
 
 # plugin assets configure
-ASSET_SOURCE_PATHS = (
-    'static/css',
-    'static/pygments',
-    )
+# ASSET_SOURCE_PATHS = (
+#    'static/css',
+#    'static/pygments',
+#    )
 
-ASSET_BUNDLES = (
-    ('mycss', ['custom.css', PYGMENT_STYLE + '.css'],
-     {'filters': 'cssmin', 'output': 'css/mycss.min.css'}),
-    )
+# ASSET_BUNDLES = (
+#     ('mycss', ['local.css', PYGMENT_STYLE + '.css'],
+#      {'filters': 'cssmin', 'output': 'css/mycss.min.css'}),
+#     )
 
 
 # plugin extract_toc configure
-MD_EXTENSIONS = (['toc'])
+# MD_EXTENSIONS = (['toc'])
 
 # plugin sitemap configure
 SITEMAP = {
@@ -113,7 +132,3 @@ SITEMAP = {
         'pages': 'monthly'
     }
 }
-
-# several typographical improvements will be incorporated into the
-# generated HTML via the Typogrify library
-TYPOGRIFY = True

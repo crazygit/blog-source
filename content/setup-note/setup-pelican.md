@@ -275,7 +275,6 @@ pelican 支持三种格式的文件，reStructuredText， markdown和html。
     WEIBO = True
     WEIBO_UID = 1768615155        # 填入uid
     WEIBO_TYPE = "red_3"
-    ```
 
 编译发布并预览。在本地预览的时候可能不会看到效果。需要发布到github pages上面才能看到.下面马上会讲如何部署到github上面.
 

@@ -4,3 +4,6 @@
 [submodule "plugins"]
 	path = plugins
 	url = https://github.com/getpelican/pelican-plugins
+[submodule "pelican-themes-tuxlite-tbs-mine"]
+	path = pelican-themes-tuxlite-tbs-mine
+	url = https://github.com/crazygit/pelican-themes-tuxlite-tbs-mine.git
