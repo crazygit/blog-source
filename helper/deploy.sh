@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#set -x
+# set -x
 
 
 BRANCH=master
@@ -9,11 +9,9 @@ PELICAN_OUTPUT_FOLDER=output
 
 function show()
 {
-    set +x
     echo -e "\033[32;1m==========================\033[0m"
     echo -e "\033[34;1m[INFO]$1\033[0m"
     echo -e "\033[32;1m==========================\033[0m"
-    set -x
 }
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
