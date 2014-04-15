@@ -1,31 +1,24 @@
 branches:
   only:
-    - master
-
+  - master
 language: python
-
 python:
-    - '2.7'
-
+- '2.7'
 before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq optipng
-    - sudo apt-get install -qq --no-install-recommends asciidoc
-    - git submodule update --init --recursive
-
+- sudo apt-get update -qq
+- sudo apt-get install -qq optipng
+- sudo apt-get install -qq --no-install-recommends asciidoc
+- git submodule update --init --recursive
 install:
-    - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then ln -s /usr/share/asciidoc/asciidocapi.py ~/virtualenv/python2.7/lib/python2.7/site-packages/; fi
-    - pip install -r requirements/prod.txt
-
+- if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then ln -s /usr/share/asciidoc/asciidocapi.py
+  ~/virtualenv/python2.7/lib/python2.7/site-packages/; fi
+- pip install -r requirements/prod.txt
 script: make publish
-
 notifications:
   email:
     on_success: always
     on_failure: always
-
 after_success: "./helper/deploy.sh"
-
 env:
   global:
-    secure: bFLEmtouNIF9hME7GwETE+8whk1c2p1FF4DE+4jykNAJhhcSEZcNlowlf4+Uoz9rMZdqK8W6iIOsSTKh1bXBh1BZxerQB4BDly8966vDUr8xPWF2cBhzlnYodIhJv/EoAmHiWGMi/kxL7CKUG5hvQw4L/nXBOYzzCkZkwpsf2xc=
+  - secure: mx/ChW4TioPlp8hiUbf0xyXuLpOBl/WbWLxpuWJxldr1eoly0iIcGjqHQ4fjFMiajTfCnkXFELhTr8AnWyAMT6zYK8qUmkNggFm+uR9LJI016adwVVJdheWDLbUNsWfKa9CH5kqFEE+qli1BX9BAFnS/l+1lPa6H9YcUQJABUF8=

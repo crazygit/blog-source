@@ -10,9 +10,6 @@
 # 自动部署参考
 
 * <http://zonca.github.io/2013/09/automatically-build-pelican-and-publish-to-github-pages.html>
+* <https://help.github.com/articles/creating-an-access-token-for-command-line-use>
 * <http://about.travis-ci.org/docs/user/getting-started/>
 * <http://about.travis-ci.org/docs/user/build-configuration/>
-
-
-
-
