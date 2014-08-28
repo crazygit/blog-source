@@ -55,13 +55,13 @@ PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
 # CNAME settings
 STATIC_PATHS = [
-    'extra/CNAME',
+#    'extra/CNAME',
     'extra/README.md',
     'extra/robots.txt',
     ]
 
 EXTRA_PATH_METADATA = {
-    'extra/CNAME': {'path': 'CNAME'},
+#    'extra/CNAME': {'path': 'CNAME'},
     'extra/README.md': {'path': 'README.md'},
     'extra/robots.txt': {'path': 'robots.txt'},
     }
