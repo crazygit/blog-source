@@ -24,7 +24,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git clone --quiet --branch=$BRANCH --recursive https://${GH_TOKEN}@github.com/$TARGET_REPO blog-html > /dev/null
     # go into directory and copy data we're interested in to that directory
     cd blog-html
-    rsync -avq --delete --exclude=.git --exclude="theme/.webassets-cache/" ../$PELICAN_OUTPUT_FOLDER/* .
+    rsync -avq --delete --exclude=.git --exclude="theme/.webassets-cache/" ../$PELICAN_OUTPUT_FOLDER/ .
     #add, commit and push files
     git add -Af .
     git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to Github Pages"
