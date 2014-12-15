@@ -10,10 +10,9 @@ from __future__ import unicode_literals
 
 AUTHOR = u'crazygit'
 SITENAME = u'Soul Mate'
-SITE_SUBNAME = u'宁静的夜，心中一片静谧'
 
 # local test url
-SITEURL = 'http://localhost/blog'
+SITEURL = ''
 
 TIMEZONE = 'Asia/Chongqing'
 DEFAULT_DATE_FORMAT = '%Y-%m-%d'
@@ -51,17 +50,17 @@ THEME = 'pelican-themes-tuxlite-tbs-mine'
 # [default emacs friendly colorful autumn murphy manni
 # monokai perldoc pastie borland trac native fruity bw vs tango]
 PYGMENT_STYLE = "emacs"
-PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
+# PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
 # CNAME settings
 STATIC_PATHS = [
-#    'extra/CNAME',
+    'extra/CNAME',
     'extra/README.md',
     'extra/robots.txt',
     ]
 
 EXTRA_PATH_METADATA = {
-#    'extra/CNAME': {'path': 'CNAME'},
+    'extra/CNAME': {'path': 'CNAME'},
     'extra/README.md': {'path': 'README.md'},
     'extra/robots.txt': {'path': 'robots.txt'},
     }
@@ -89,9 +88,9 @@ LINKS = (
 #####################################
 GITHUB_URL = "https://github.com/crazygit"
 DISQUS_SITENAME = 'lianglin999'
-BAIDU_SHARE_UID = 5513994
+#BAIDU_SHARE_UID = 5513994
 # YOUYAN_UID = 1774842
-BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
+#BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
 
 
 #####################################
@@ -100,9 +99,9 @@ BAIDU_ANALYTICS = '3Fbd2f7fd2b210d56de826c217b8a5a70c'
 #                                   #
 #####################################
 # plugins path
-PLUGIN_PATH = 'plugins'
+#PLUGIN_PATHS = ['plugins']
 # PLUGINS = ['assets', 'cjk-auto-spacing', 'extract_toc', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
-PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+# PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
 
 
 # plugin assets configure
@@ -129,7 +128,7 @@ SITEMAP = {
         'pages': 0.5
     },
     'changefreqs': {
-        'articles': 'monthly',
+        'articles': 'daily',
         'indexes': 'daily',
         'pages': 'monthly'
     }

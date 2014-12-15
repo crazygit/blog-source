@@ -10,7 +10,7 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'http://crazygit.github.io'
+SITEURL = 'crazygit.wiseturtles.com'
 RELATIVE_URLS = False
 
 
@@ -25,5 +25,6 @@ FEED_ALL_RSS = 'feeds/all.rss.xml'
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
+DISQUS_SITENAME = 'lianglin999'
+
 #GOOGLE_ANALYTICS = ""

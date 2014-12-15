@@ -55,8 +55,6 @@ help:
 html:
 	rm -rf $(OUTPUTDIR)
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
-	sudo rm -rf /etc/nginx/html/blog
-	sudo cp -r $(OUTPUTDIR) /etc/nginx/html/blog
 
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)

@@ -1,3 +1,11 @@
+Title: Install phpredisadmin
+Date: 2014-12-15 10:36
+Tags: redis, phpredisadmin, nginx
+Slug: install-phpredisadmin
+Author: crazygit
+Summary: install phpredisadmin behind nginx
+Status: draft
+
 php-redis-admin 安装
 
 NOTE: 在nginx上配置php-redis-admin尝试了只执行第8步就成功
