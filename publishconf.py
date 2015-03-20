@@ -10,7 +10,7 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'crazygit.wiseturtles.com'
+SITEURL = 'http://crazygit.wiseturtles.com'
 RELATIVE_URLS = False
 
 
